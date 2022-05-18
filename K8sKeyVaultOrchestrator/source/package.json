@@ -1,0 +1,28 @@
+{
+  "name": "k8skvmcontroller",
+  "version": "1.0.0",
+  "description": "Custom K8s Deploy App",
+  "main": "server/k8sKVMOrchestrator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "mkdir -p logs",
+    "install": "npm install --save-dev express body-parser dotenv crypto typedoc axios @kubernetes/client-node",
+    "start": "node server/k8sKVMOrchestrator.js 1> logs/k8sKVMOrchestrator.log 2>& 1"
+  },
+  "keywords": [
+    "k8s REST API",
+    "k8s KayVault Orchestrator API"
+  ],
+  "author": "Monojit Datta",
+  "license": "MIT",
+  "devDependencies": {
+    "@kubernetes/client-node": "^0.14.3",
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "typedoc": "^0.20.36"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,31 @@
+{
+  "name": "k8skvmoperator",
+  "version": "1.0.0",
+  "description": "Custom K8s Deploy App",
+  "main": "server/k8sKVMOperator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "mkdir -p logs",
+    "install": "npm install --save-dev express body-parser dotenv crypto typedoc @kubernetes/client-node @azure/keyvault-secrets @azure/identity @azure/ms-rest-nodeauth @azure/ms-rest-azure-js",
+    "start": "node server/k8sKVMOperator.js 1> logs/k8sKVMOperator.log 2>& 1"
+  },
+  "keywords": [
+    "k8s REST API",
+    "k8s KayVault Operator API"
+  ],
+  "author": "Monojit Datta",
+  "license": "MIT",
+  "devDependencies": {
+    "@azure/identity": "^1.2.5",
+    "@azure/keyvault-secrets": "^4.1.0",
+    "@azure/ms-rest-azure-js": "^2.1.0",
+    "@azure/ms-rest-nodeauth": "^3.0.9",
+    "@kubernetes/client-node": "^0.14.1",
+    "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "typedoc": "^0.20.34"
+  },
+  "dependencies": {}
+}

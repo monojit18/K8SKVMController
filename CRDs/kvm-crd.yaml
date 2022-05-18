@@ -1,0 +1,75 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:  
+  name: kvmorchestrators.kvm.api.server
+spec:
+  group: kvm.api.server
+  versions:
+  - name: v1
+    served: true
+    storage: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        required: ["spec"]
+        properties:
+          spec:
+            type: object
+            required: ["deployments", "access", "webhook"]              
+            properties:
+              deployments:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - "name"
+                  oneOf:
+                  - required: ["secrets"]
+                  - required: ["envVars"]
+                  properties:
+                    name:
+                      type: string                                                                   
+                    secrets:
+                      type: array
+                      items:
+                        type: object
+                        required: ["secretName", "k8sSecret"]
+                        properties:
+                          secretName:
+                            type: string
+                          k8sSecret:
+                            type: array
+                            items:
+                              type: object
+                              required: ["kvSecret", "envSecret"]
+                              properties:
+                                kvSecret:
+                                  type: string
+                                envSecret:
+                                  type: string
+                    envVars:
+                      type: array
+                      items:
+                        type: object
+                        required: ["kvSecret", "envSecret"]
+                        properties:
+                          kvSecret:
+                            type: string
+                          envSecret:
+                            type: string                          
+              access:
+                type: object
+                required: ["name"]
+                properties:            
+                  name:
+                    type: string
+              webhook:
+                type: boolean        
+          
+  scope: Namespaced
+  names:
+    plural: kvmorchestrators
+    singular: kvmorchestrator
+    kind: KVMOrchestrator
+    shortNames:
+    - kvmorch

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kvm-orchs-deploy
+  namespace: kvm-ns
+  labels:
+    name: kvm-orchs-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kvm-orchs-pod
+  template:
+    metadata:      
+      labels:
+        app: kvm-orchs-pod
+    spec:
+      containers:
+        - name: kvm-orchs-app
+          image: aksltacr.azurecr.io/keyvault-orchestrator:v1.0.0
+          imagePullPolicy: Always          
+          resources:
+            limits:
+              memory: 200Mi
+              cpu: 300m
+            requests:
+              memory: 200Mi
+              cpu: 300m      
+          ports:
+          - containerPort: 7081
+          - containerPort: 7443

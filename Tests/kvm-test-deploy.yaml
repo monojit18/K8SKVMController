@@ -1,0 +1,26 @@
+apiVersion: kvm.api.server/v1
+kind: KVMOrchestrator
+metadata:
+  name: kvm-test
+  namespace: kvm-ns
+spec:
+  deployments:
+  - name: "deployments"
+    secrets:
+    - secretName: "secrets"
+      k8sSecret:
+      - kvSecret: "kv"
+        envSecret: "env"    
+    # envVars:
+    # - kvSecret: "kv"
+    #   envSecret: "env"
+  access:
+    name: "test-sp-secret"
+  webhook: true
+    
+
+
+      
+
+       
+        

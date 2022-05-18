@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:  
+  labels:
+    app: nginx-deploy
+  name: nginx-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-deploy
+  strategy: {}
+  template:
+    metadata:      
+      labels:
+        app: nginx-deploy
+    spec:
+      containers:
+      - image: nginx:alpine
+        name: nginx
+        resources: {}
+      nodeSelector:
+        agentpool: pranapool
